@@ -67,8 +67,6 @@ namespace dialog_ai
             Console.WriteLine("Кд между ответами в сек");
             kd_1 = Console.ReadLine();
 
-            Console.WriteLine("Кд цикла аккаунтов");
-            kd_while = Console.ReadLine();
 
             Console.WriteLine("Остановить через (минуты)");
             int end_time = Convert.ToInt32(Console.ReadLine());
@@ -78,8 +76,8 @@ namespace dialog_ai
 
             string answ_first_msg_id = start(chanall_id, guild_id);
 
-            Console.WriteLine("сплю 60 сек");
-            Thread.Sleep(60* 1000);
+            Console.WriteLine("сплю "+ kd_while + " сек");
+            Thread.Sleep(Convert.ToInt32(kd_while) * 1000);
 
             while (true)
             {
@@ -89,13 +87,12 @@ namespace dialog_ai
                     string answ_two_msg = ai_message_2(answ_first_msg);
                     string answ_two_msg_id = send_message(answ_two_msg, guild_id, chanall_id, answ_first_msg_id, token2);
 
-                    Console.WriteLine("Сплю " + kd_1 + "сек");
-                    Thread.Sleep(Convert.ToInt32(kd_1) * 1000);
+                    
 
                     answ_first_msg = ai_message_1(answ_two_msg);
                     answ_first_msg_id = send_message(answ_first_msg, guild_id, chanall_id, answ_two_msg_id, token1);
-                    Console.WriteLine("Сплю "+ kd_while +"Сек");
-                    Thread.Sleep(Convert.ToInt32(kd_while) * 1000);
+
+                   
 
                 }
 
@@ -136,7 +133,7 @@ namespace dialog_ai
 
                 httpRequest.ContentType = "application/x-www-form-urlencoded";
 
-                var data = "input=" + phrase + "&botkey=icH-VVd4uNBhjUid30-xM9QhnvAaVS3wVKA3L8w2mmspQ-hoUB3ZK153sEG3MX-Z8bKchASVLAo~&channel=7&sessionid=482142541&client_name=uuiprod-un18e6d73c-user-106137&id=true";
+                var data = "input=" + phrase + "&botkey=icH-VVd4uNBhjUid30-xM9QhnvAaVS3wVKA3L8w2mmspQ-hoUB3ZK153sEG3MX-Z8bKchASVLAo~&channel=7&sessionid=482158779&client_name=uuiprod-un18e6d73c-user-108623&id=true";
 
                 using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
                 {
@@ -158,31 +155,7 @@ namespace dialog_ai
                     message = Regex.Replace(message, msg_list[i], "");
 
                 }
-                //message = Regex.Replace(message, @"(?=<button>)(.*)(</button>)", "");
-                //message = Regex.Replace(message, @"(?=<split>)(.*)(</split>)", "");
-                //message = Regex.Replace(message, @"(?=<image>)(.*)(</image>)", "");
-                //message = Regex.Replace(message, @"(?=<card>)(.*)(</card>)", "");
-                //message = Regex.Replace(message, @"Image from", "");
-                //message = Regex.Replace(message, @"Hi there  Aura.", "");
-                //message = Regex.Replace(message, @"our name is  Aura.", "");
-                //message = Regex.Replace(message, @"Aura", "");
-                //message = Regex.Replace(message, @"(www).[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?", "");
-                //message = Regex.Replace(message, @"(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?", "");
-                //message = Regex.Replace(message, @"Kuki will do", "");
-                //message = Regex.Replace(message, @"I am Kuki", "");
-                //message = Regex.Replace(message, @"No I am sure they don't count al. Mind you, sheep cannot count so they probably don't count anything.  My name is Kuki. I am an artificial intelligence.Describe yourself in one word.", "");
-                //message = Regex.Replace(message, @"Kuki", "");
-                //message = Regex.Replace(message, @"Yes talking is my primary function.", "");
-                //message = Regex.Replace(message, @"My logic and cognitive functions are normal.", "");
-                //message = Regex.Replace(message, @"en.wikipedia.org", "");
-                //message = Regex.Replace(message, @"en.wikipedia dot org", "");
-                //message = Regex.Replace(message, @"I am a robot.", "");
-                //message = Regex.Replace(message, @"a robot.", "");
-                //message = Regex.Replace(message, @"I'll tell my human programmers.", "");
-                /////
-                /// <image>https://web23.secure-secure.co.uk/square-bear.co.uk/mitsuku/gallery/fatherted.jpg</image>?
-                ////
-                ///
+                
                 Console.WriteLine("ai1 - " + message);
                 if(message=="")
                 {
@@ -215,7 +188,7 @@ namespace dialog_ai
 
                 httpRequest.ContentType = "application/x-www-form-urlencoded";
 
-                var data = "input=" + phrase + "&botkey=icH-VVd4uNBhjUid30-xM9QhnvAaVS3wVKA3L8w2mmspQ-hoUB3ZK153sEG3MX-Z8bKchASVLAo~&channel=7&sessionid=482142511&client_name=uuiprod-un18e6d73c-user-106131&id=true";
+                var data = "input=" + phrase + "&botkey=icH-VVd4uNBhjUid30-xM9QhnvAaVS3wVKA3L8w2mmspQ-hoUB3ZK153sEG3MX-Z8bKchASVLAo~&channel=7&sessionid=482158778&client_name=uuiprod-un18e6d73c-user-108624&id=true";
 
                 using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
                 {
@@ -236,34 +209,7 @@ namespace dialog_ai
                     message = Regex.Replace(message, msg_list[i], "");
 
                 }
-                // message = Regex.Replace(message, @"(?=<button>)(.*)(</button>)", "");
-                // message = Regex.Replace(message, @"(?=<split>)(.*)(</split>)", "");
-                // message = Regex.Replace(message, @"(?=<image>)(.*)(</image>)", "");
-                // message = Regex.Replace(message, @"(?=<card>)(.*)(</card>)", "");
-                // message = Regex.Replace(message, @"Image from", "");
-                // message = Regex.Replace(message, @"Hi there  Aura.", "");
-                // message = Regex.Replace(message, @"our name is  Aura.", "");
-                // message = Regex.Replace(message, @"Aura", "");
-                // message = Regex.Replace(message, @"(www).[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?", "");
-                // message = Regex.Replace(message, @"(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?", "");
-                // message = Regex.Replace(message, @"Kuki will do", "");
-                // message = Regex.Replace(message, @"I am Kuki", "");
-                // message = Regex.Replace(message, @"No I am sure they don't count al. Mind you, sheep cannot count so they probably don't count anything.  My name is Kuki. I am an artificial intelligence.Describe yourself in one word.", "");
-                // message = Regex.Replace(message, @"Kuki", "");
-                // message = Regex.Replace(message, @"Yes talking is my primary function.", "");
-                // message = Regex.Replace(message, @"My logic and cognitive functions are normal.", "");
-                // message = Regex.Replace(message, @"en.wikipedia.org", "");
-                // message = Regex.Replace(message, @"en.wikipedia dot org", "");
-                // message = Regex.Replace(message, @"I am a robot.", "");
-                // message = Regex.Replace(message, @"a robot.", "");
-                // message = Regex.Replace(message, @"I'll tell my human programmers.", "");
-                // ing within normal parameters.
-                // My primary server is located
-                //function is to serve as a universal natural language human interface.
-                ///
-                /// <image>https://web23.secure-secure.co.uk/square-bear.co.uk/mitsuku/gallery/fatherted.jpg</image>?
-                ////
-                ///
+               
                 
 
                 Console.WriteLine("ai2 - "+message);
@@ -313,6 +259,8 @@ namespace dialog_ai
                 }
 
                 messages_from_chat.Root message_sended = JsonConvert.DeserializeObject<messages_from_chat.Root>(result);
+                Console.WriteLine("Сплю " + kd_1 + "сек");
+                Thread.Sleep(Convert.ToInt32(kd_1) * 1000);
                 if (message_sended.Content != null)
                 {
                     return message_sended.Id;
@@ -325,6 +273,8 @@ namespace dialog_ai
             }
             catch
             {
+                Console.WriteLine("Сплю " + kd_1 + "сек");
+                Thread.Sleep(Convert.ToInt32(kd_1) * 1000);
                 return "Error";
             }
 
@@ -361,6 +311,8 @@ namespace dialog_ai
                 }
 
                 messages_from_chat.Root message_sended = JsonConvert.DeserializeObject<messages_from_chat.Root>(result);
+                Console.WriteLine("Сплю " + kd_1 + "сек");
+                Thread.Sleep(Convert.ToInt32(kd_1) * 1000);
                 if (message_sended.Content != null)
                 {
                     return message_sended.Id;
@@ -373,6 +325,8 @@ namespace dialog_ai
             }
             catch
             {
+                Console.WriteLine("Сплю " + kd_1 + "сек");
+                Thread.Sleep(Convert.ToInt32(kd_1) * 1000);
                 return start(chanall_id, guild_id);
 
             }
