@@ -34,38 +34,50 @@ namespace dialog_ai
         private static System.Timers.Timer aTimer;
         static List<string> msg_list;
         static List<string> qstn;
+        static List<string> tokens;
+
         static string answ_first_msg;
         static string f_quest;
         static string token1;
         static string token2;
 
         static string kd_1;
-        static string kd_while;
+        static int kd_quest;
         static void Main(string[] args)
         {
-            aTimer = new System.Timers.Timer(300000);
-            aTimer.Elapsed += OnTimedEvent;
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
+
+           
 
             qstn = File.ReadAllLines("qstn.txt").ToList();
             msg_list = File.ReadAllLines("msg.txt").ToList();
+            tokens = File.ReadAllLines("tokens.txt").ToList();
+            Console.WriteLine("full link");
 
-            Console.WriteLine("guild_id");
-            string guild_id = Console.ReadLine();
+            string link = Console.ReadLine();
+            string guild_id =null;
+            string chanall_id = null ;
+             
 
+            string pattern = @"[0-9]+";
+            MatchCollection matches = Regex.Matches(link, pattern, RegexOptions.Multiline);
 
-            Console.WriteLine("chanall_id");
-            string chanall_id = Console.ReadLine();
+            foreach (Match match in matches)
+            {
+                guild_id = matches[0].Value;
+                chanall_id =matches[1].Value;
+            }
 
+            Console.WriteLine("guild_id - " + matches[0].Value);
+            Console.WriteLine("chanall_id - " +  matches[1].Value);
 
-            Console.WriteLine("token1");
-              token1 = Console.ReadLine();
-            Console.WriteLine("token2");
-              token2 = Console.ReadLine();
+            Console.WriteLine("token1 - " + (token1 = tokens[0]));
+            Console.WriteLine("token2 - " + (token2 = tokens[1]));
 
             Console.WriteLine("Кд между ответами в сек");
             kd_1 = Console.ReadLine();
+
+            Console.WriteLine("Добавить вопрос в ai через (минуты)");
+            kd_quest =Convert.ToInt32( Console.ReadLine());
 
 
             Console.WriteLine("Остановить через (минуты)");
@@ -73,11 +85,12 @@ namespace dialog_ai
             DateTime end = DateTime.Now.AddMinutes(end_time);
             int Hour_end_lukoil = (DateTime.Now.AddMinutes(end_time) - DateTime.Now).Hours;
             int Min_end_lukoil = (DateTime.Now.AddMinutes(end_time) - DateTime.Now).Minutes;
-
             string answ_first_msg_id = start(chanall_id, guild_id);
 
-            Console.WriteLine("сплю "+ kd_while + " сек");
-            Thread.Sleep(Convert.ToInt32(kd_while) * 1000);
+            aTimer = new System.Timers.Timer(kd_quest * 60000);
+            aTimer.Elapsed += OnTimedEvent;
+            aTimer.AutoReset = true;
+            aTimer.Enabled = true;
 
             while (true)
             {
@@ -105,6 +118,9 @@ namespace dialog_ai
             string f_quest = qstn[rnd.Next(0, qstn.Count)];
             string first_message_id = send_first_message(f_quest, chanall_id, token2);
             Console.WriteLine("ai2 - " + f_quest);
+
+            Console.WriteLine("сплю " + kd_1 + " сек");
+            Thread.Sleep(Convert.ToInt32(kd_1) * 1000);
 
             answ_first_msg = ai_message_1(f_quest);
             string answ_first_msg_id = send_message(answ_first_msg, guild_id, chanall_id, first_message_id, token1);
